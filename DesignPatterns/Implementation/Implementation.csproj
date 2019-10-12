@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6964700-7F3B-44BD-9025-6C29EB567E8B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Implementation</RootNamespace>
+    <AssemblyName>Implementation</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enumerator\EnumeratorApp.cs" />
+    <Compile Include="Enumerator\MyCollection.cs" />
+    <Compile Include="Iterator\Aggregate.cs" />
+    <Compile Include="Iterator\IteratorApp.cs" />
+    <Compile Include="Iterator\ConcreteAggregate.cs" />
+    <Compile Include="Iterator\ConcreteIterator.cs" />
+    <Compile Include="Iterator\Iterator.cs" />
+    <Compile Include="Iterator\LogFileSource.cs" />
+    <Compile Include="Observer\IObserver.cs" />
+    <Compile Include="Observer\IObservable.cs" />
+    <Compile Include="Observer\ConcreteObserver.cs" />
+    <Compile Include="Observer\ObserverApp.cs" />
+    <Compile Include="Observer\Simulator.cs" />
+    <Compile Include="Observer\ConcreteObservable.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReaderWriterLock\ReadWriteLock.cs" />
+    <Compile Include="ReaderWriterLock\ReadWriteLockApp.cs" />
+    <Compile Include="Singleton\ConfigService.cs" />
+    <Compile Include="Singleton\SingletonApp.cs" />
+    <Compile Include="Strategy\Class1.cs" />
+    <Compile Include="Strategy\Class2.cs" />
+    <Compile Include="TemplateMethod\Class1.cs" />
+    <Compile Include="Visitor\Chebyshev.cs" />
+    <Compile Include="Visitor\LogEntry.cs" />
+    <Compile Include="Visitor\DatabaseLogSaver.cs" />
+    <Compile Include="Visitor\Euclid.cs" />
+    <Compile Include="Visitor\ExceptionLogEntry.cs" />
+    <Compile Include="Visitor\ILogEntryVisitor.cs" />
+    <Compile Include="Visitor\IVisitor.cs" />
+    <Compile Include="Visitor\Point.cs" />
+    <Compile Include="Visitor\Point2D.cs" />
+    <Compile Include="Visitor\Point3D.cs" />
+    <Compile Include="Visitor\SimpleLogEntry.cs" />
+    <Compile Include="Visitor\VisitorApp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
