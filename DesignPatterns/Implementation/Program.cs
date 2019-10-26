@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Implementation.Enumerator;
+using Implementation.Graph;
 using Implementation.Iterator;
 using Implementation.Observer;
 using Implementation.ReaderWriterLock;
@@ -17,7 +18,7 @@ namespace Implementation
 			//sw.Start();
 			//ReadWriteLockApp.Run();
 
-			VisitorApp.Run();
+			GraphApp.Run();
 
 			//var app = new SingletonApp();
 			//app.Run();

@@ -43,8 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract Factory\AbstractFactory.cs" />
+    <Compile Include="Abstract Factory\HeroFactory.cs" />
+    <Compile Include="Builder\Builder.cs" />
+    <Compile Include="Builder\Bread.cs" />
+    <Compile Include="Builder\BreadBuilder.cs" />
     <Compile Include="Enumerator\EnumeratorApp.cs" />
     <Compile Include="Enumerator\MyCollection.cs" />
+    <Compile Include="FactoryMethod\DeveloperFactoryMethod.cs" />
+    <Compile Include="FactoryMethod\FactoryMethod.cs" />
+    <Compile Include="Graph\GraphApp.cs" />
+    <Compile Include="Graph\Graph.cs" />
+    <Compile Include="Graph\Node.cs" />
     <Compile Include="Iterator\Aggregate.cs" />
     <Compile Include="Iterator\IteratorApp.cs" />
     <Compile Include="Iterator\ConcreteAggregate.cs" />
