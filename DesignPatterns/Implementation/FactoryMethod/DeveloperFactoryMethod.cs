@@ -4,15 +4,16 @@ namespace Implementation.FactoryMethod
 {
 	class DeveloperFactoryMethod
 	{
-		static void Run()
+		public static void Run()
 		{
-			Developer dev = new PanelDeveloper("ООО КирпичСтрой");
-			House house2 = dev.Create();
-
-			dev = new WoodDeveloper("Частный застройщик");
-			House house = dev.Create();
-
+			Run(new PanelDeveloper("ООО КирпичСтрой"));
+			Run(new WoodDeveloper("Частный застройщик"));
 			Console.ReadLine();
+		}
+
+		static void Run(Developer developer)
+		{
+			developer.Create();
 		}
 	}
 	// абстрактный класс строительной компании

@@ -6,17 +6,30 @@ using System.Threading.Tasks;
 
 namespace Implementation.Strategy
 {
+	public class LogImporter : ILogImporter
+	{
+		public List<LogEntry> GetLogs()
+		{
+			return new List<LogEntry>();
+		}
+	}
+	public interface ILogImporter
+	{
+		List<LogEntry> GetLogs();
+	}
+
 	class LogProcessor
 	{
-		private readonly Func<List<LogEntry>> _logImporter;
-		public LogProcessor(Func<List<LogEntry>> logImporter)
+		
+		private readonly ILogImporter _logImporter;
+		public LogProcessor(ILogImporter logImporter)
 		{
 			_logImporter = logImporter;
 		}
 
 		public void ProcessLogs()
 		{
-			foreach (var logEntry in _logImporter.Invoke())
+			foreach (var logEntry in _logImporter.GetLogs())
 			{
 				SaveLogEntry(logEntry);
 			}

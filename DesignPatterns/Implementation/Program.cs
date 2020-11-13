@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using Implementation.Composite;
 using Implementation.Enumerator;
+using Implementation.Facade;
 using Implementation.Graph;
 using Implementation.Iterator;
 using Implementation.Observer;
+using Implementation.Proxy;
 using Implementation.ReaderWriterLock;
 using Implementation.Singleton;
+using Implementation.Strategy;
 using Implementation.Visitor;
 
 namespace Implementation
@@ -14,17 +19,9 @@ namespace Implementation
 	{
 		private static void Main(string[] args)
 		{
-			//Stopwatch sw = new Stopwatch();
-			//sw.Start();
-			//ReadWriteLockApp.Run();
-
-			GraphApp.Run();
-
-			//var app = new SingletonApp();
-			//app.Run();
-
-			//sw.Stop();
-			//Console.WriteLine(sw.Elapsed);
+			FacadeProgram.Run();
+			//var log = new LogProcessor(new LogImporter());
+			//log.ProcessLogs();
 		}
 	}
 }

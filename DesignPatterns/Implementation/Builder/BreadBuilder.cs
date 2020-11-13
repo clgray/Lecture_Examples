@@ -4,7 +4,7 @@ namespace Implementation.Builder
 {
 	class App
 	{
-		static void Run()
+		public static void Run()
 		{
 			// содаем объект пекаря
 			Baker baker = new Baker();
@@ -25,7 +25,7 @@ namespace Implementation.Builder
 	abstract class BreadBuilder
 	{
 		public Bread Bread { get; private set; }
-		public void CreateBread()
+		public BreadBuilder()
 		{
 			Bread = new Bread();
 		}
@@ -38,7 +38,6 @@ namespace Implementation.Builder
 	{
 		public Bread Bake(BreadBuilder breadBuilder)
 		{
-			breadBuilder.CreateBread();
 			breadBuilder.SetFlour();
 			breadBuilder.SetSalt();
 			breadBuilder.SetAdditives();

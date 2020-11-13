@@ -8,17 +8,19 @@ namespace Implementation.Abstract_Factory
 {
 	class App
 	{
-		static void Run()
+		public static void Run()
 		{
-			Hero elf = new Hero(new ElfFactory());
-			elf.Hit();
-			elf.Run();
-
-			Hero voin = new Hero(new VoinFactory());
-			voin.Hit();
-			voin.Run();
+			Run(new ElfFactory());
+			Run(new VoinFactory());
 
 			Console.ReadLine();
+		}
+
+		static void Run(HeroFactory heroFactory)
+		{
+			var hero = new Hero(heroFactory);
+			hero.Run();
+			hero.Hit();
 		}
 	}
 	//абстрактный класс - оружие

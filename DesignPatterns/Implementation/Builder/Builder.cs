@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Implementation.Builder
 {
 	class Client
 	{
-		void Main()
+		public static void Run()
 		{
 			Builder builder = new ConcreteBuilder();
 			Director director = new Director(builder);
 			director.Construct();
-			Product product = builder.GetResult();
+			var product = director.Result;
+
+			Console.WriteLine(product);
+			Console.ReadKey();
 		}
 	}
 	class Director
@@ -21,10 +25,14 @@ namespace Implementation.Builder
 		}
 		public void Construct()
 		{
+			builder.BuildPartC();
 			builder.BuildPartA();
 			builder.BuildPartB();
 			builder.BuildPartC();
+			builder.BuildPartC();
+			builder.BuildPartB();
 		}
+		public Product Result => builder.GetResult();
 	}
 
 	abstract class Builder
@@ -37,11 +45,25 @@ namespace Implementation.Builder
 
 	class Product
 	{
-		List<object> parts = new List<object>();
+		List<string> parts = new List<string>();
 		public void Add(string part)
 		{
 			parts.Add(part);
 		}
+		public override string ToString()
+		{
+
+			var sb = new System.Text.StringBuilder();
+			foreach (var item in parts)
+			{
+				sb.Append("-");
+				sb.Append(item);
+			}
+			sb.Replace("-", "+");
+
+			return sb.ToString();
+		}
+
 	}
 
 	class ConcreteBuilder : Builder
