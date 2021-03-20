@@ -8,6 +8,7 @@ namespace Implementation.FactoryMethod
 		{
 			Run(new PanelDeveloper("ООО КирпичСтрой"));
 			Run(new WoodDeveloper("Частный застройщик"));
+			Run(new BlockDeveloper("ООО БытовкаСтрой"));
 			Console.ReadLine();
 		}
 
@@ -51,6 +52,16 @@ namespace Implementation.FactoryMethod
 		}
 	}
 
+	class BlockDeveloper : Developer
+	{
+		public BlockDeveloper(string n) : base(n)
+		{ }
+
+		public override House Create()
+		{
+			return new BlockHouse();
+		}
+	}
 	abstract class House
 	{ }
 
@@ -66,6 +77,14 @@ namespace Implementation.FactoryMethod
 		public WoodHouse()
 		{
 			Console.WriteLine("Деревянный дом построен");
+		}
+	}
+
+	class BlockHouse : House
+	{
+		public BlockHouse()
+		{
+			Console.WriteLine("Блочный дом построен");
 		}
 	}
 }

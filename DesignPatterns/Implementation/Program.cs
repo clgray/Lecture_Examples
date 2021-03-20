@@ -4,7 +4,9 @@ using System.Diagnostics;
 using Implementation.Composite;
 using Implementation.Enumerator;
 using Implementation.Facade;
+using Implementation.FactoryMethod;
 using Implementation.Graph;
+using Implementation.heap;
 using Implementation.Iterator;
 using Implementation.Observer;
 using Implementation.Proxy;
@@ -19,8 +21,10 @@ namespace Implementation
 	{
 		private static void Main(string[] args)
 		{
-			FacadeProgram.Run();
-			//var log = new LogProcessor(new LogImporter());
+
+			var ranner = new EmployeeRunner();
+			ranner.Run();
+			//var log = new LogProcessor(new SystemLogImporter());
 			//log.ProcessLogs();
 		}
 	}

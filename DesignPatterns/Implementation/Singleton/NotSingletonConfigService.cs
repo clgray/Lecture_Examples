@@ -3,32 +3,10 @@ using System.Collections.Generic;
 
 namespace Implementation.Singleton
 {
-	public class ConfigService: IConfigService
+	public class NotSingletonConfigService:IConfigService
 	{
-		private static ConfigService _configService;
 		private Dictionary<string, string> _config = new Dictionary<string, string>();
-		private static object syncObj = new object();
 		private static object syncOperation = new object();
-
-		private ConfigService()
-		{
-		}
-
-		public static ConfigService Instance()
-		{
-			if (_configService == null)
-			{
-				lock (syncObj)
-				{
-					if (_configService == null)
-					{
-						_configService = new ConfigService();
-					}
-				}
-			}
-
-			return _configService;
-		}
 
 		public string GetValue(string key)
 		{

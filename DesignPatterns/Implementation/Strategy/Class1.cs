@@ -6,22 +6,42 @@ using System.Threading.Tasks;
 
 namespace Implementation.Strategy
 {
-	public class LogImporter : ILogImporter
+	public class FileLogImporter : ILogImporter
 	{
 		public List<LogEntry> GetLogs()
 		{
 			return new List<LogEntry>();
 		}
 	}
+
+	public class SystemLogImporter : ILogImporter
+	{
+		public List<LogEntry> GetLogs()
+		{
+			return new List<LogEntry>()
+			{
+				new LogEntry {Severity = LogSeverity.Critical, Date = DateTime.Now, Message = "Всё плохо"},
+				new LogEntry
+				{
+					Severity = LogSeverity.Debug, Date = DateTime.Now, Message = "Запустилась функция А()",
+				},
+				new LogEntry
+				{
+					Severity = LogSeverity.Error, Date = DateTime.Now, Message = "Неизвестная ошибка",
+				}
+			};
+		}
+	}
+
 	public interface ILogImporter
 	{
 		List<LogEntry> GetLogs();
 	}
 
-	class LogProcessor
+	public class LogProcessor
 	{
-		
 		private readonly ILogImporter _logImporter;
+
 		public LogProcessor(ILogImporter logImporter)
 		{
 			_logImporter = logImporter;
@@ -37,8 +57,32 @@ namespace Implementation.Strategy
 
 		private void SaveLogEntry(LogEntry logEntry)
 		{
-			throw new NotImplementedException();
+			logMapActions[logEntry.Severity](logEntry);
 		}
+
+		private static void WriteConsoleLogEntry(LogEntry logEntry, ConsoleColor color)
+		{
+			var previousForegroundColor = Console.ForegroundColor;
+			Console.ForegroundColor = color;
+			Console.WriteLine($"Date {logEntry.Date}, Severity {logEntry.Severity}, Massage:{logEntry.Message}");
+			Console.ForegroundColor = previousForegroundColor;
+		}
+
+		private Dictionary<LogSeverity, Action<LogEntry>> logMapActions = new Dictionary<LogSeverity, Action<LogEntry>>()
+			{
+			{
+				LogSeverity.Critical, entry => { WriteConsoleLogEntry(entry, ConsoleColor.Red); }
+			},
+			{
+				LogSeverity.Debug, entry => { WriteConsoleLogEntry(entry, ConsoleColor.Gray); }
+
+			},
+			{
+				LogSeverity.Error, entry => { WriteConsoleLogEntry(entry, ConsoleColor.DarkMagenta); }
+
+			}
+
+			};
 
 		// Остальные методы пропущены...
 	}
@@ -52,11 +96,25 @@ namespace Implementation.Strategy
 	//}
 	public class LogEntry
 	{
+		public string Message { get; set; }
+		public DateTime Date { get; set; }
+		public LogSeverity Severity { get; set; }
+
 		public static LogEntry Parse(string line)
 		{
 			throw new NotImplementedException();
 		}
 	}
+
+	public enum LogSeverity
+	{
+		Debug = 0,
+		Info = 1,
+		Warning = 2,
+		Error = 3,
+		Critical = 4
+	}
+
 	//public class ExceptionLogEntry
 	//{
 	//	public static ExceptionLogEntry Parse(string line)

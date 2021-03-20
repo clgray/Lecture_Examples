@@ -9,23 +9,29 @@ namespace Implementation.Singleton
 {
 	public class SingletonApp
 	{
-		public void Run()
+		private readonly IConfigService _configService;
+
+		public SingletonApp(IConfigService configService)
 		{
-			var threads = new Thread[10];
-			for (int i = 0; i < 10; i++)
+			_configService = configService;
+		}
+		public string Run()
+		{
+			var threadsCount = 10; 
+			var threads = new Thread[threadsCount];
+			for (int i = 0; i < threadsCount; i++)
 			{
 				threads[i]= new Thread(Start);
 				threads[i].Start();
 			}
 
-
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < threadsCount; i++)
 			{
 				threads[i].Join();
 			}
 
-			Console.WriteLine(ConfigService.Instance().GetValue("count"));
-
+			Console.WriteLine(_configService.GetValue("count"));
+			return _configService.GetValue("count");
 		}
 
 		private void Start()
@@ -34,9 +40,9 @@ namespace Implementation.Singleton
 			{
 				lock (this)
 				{
-					var i = int.Parse(ConfigService.Instance().GetValue("count"));
+					var i = int.Parse(_configService.GetValue("count"));
 					i++;
-					ConfigService.Instance().SetValue("count", i.ToString());
+					_configService.SetValue("count", i.ToString());
 				}
 			}
 
