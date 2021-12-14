@@ -15,25 +15,18 @@
 		}
 
 		// Gets first iteration item
-		public override object First()
+		public override void First()
 		{
 			_current = 0;
-			return _aggregate[_current];
 		}
 
 		// Gets next iteration item
-		public override object Next()
+		public override void Next()
 		{
-			object ret = null;
-
-			_current++;
-
-			if (_current < _aggregate.Count)
+			if (_current < _aggregate.Count - 1)
 			{
-				ret = _aggregate[_current];
+				_current++;
 			}
-
-			return ret;
 		}
 
 		// Gets current iteration item
@@ -45,7 +38,7 @@
 		// Gets whether iterations are complete
 		public override bool IsDone()
 		{
-			return _current >= _aggregate.Count;
+			return _current >= _aggregate.Count - 1;
 		}
 	}
 }

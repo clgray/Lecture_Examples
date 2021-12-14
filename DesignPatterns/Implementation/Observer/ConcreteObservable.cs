@@ -13,7 +13,7 @@ namespace Implementation.Observer
 
 		private Simulator simulator;
 
-		private const int speed = 200;
+		private const int speed = 500;
 
 		public ConcreteObservable()
 		{
@@ -33,10 +33,10 @@ namespace Implementation.Observer
 
 		public void NotifyObservers(string s)
 		{
-			//foreach (var observer in Observers)
-			//{
-			//	observer.Update(s);
-			//}
+			foreach (var observer in Observers)
+			{
+				observer.Update(s);
+			}
 			OnUpdate?.Invoke(s);
 		}
 
@@ -49,7 +49,7 @@ namespace Implementation.Observer
 		{
 			foreach (string s in simulator)
 			{
-				Console.WriteLine("Observer: " + s);
+				Console.WriteLine("Observable element state: " + s);
 				SubjectState = s;
 				NotifyObservers(s);
 				Thread.Sleep(speed); // milliseconds

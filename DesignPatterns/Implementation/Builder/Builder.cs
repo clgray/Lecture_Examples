@@ -31,8 +31,11 @@ namespace Implementation.Builder
 			builder.BuildPartC();
 			builder.BuildPartC();
 			builder.BuildPartB();
+			builder.BuildPartB();
+			builder.BuildPartB();
+
 		}
-		public Product Result => builder.GetResult();
+		public BaseProduct Result => builder.GetResult();
 	}
 
 	abstract class Builder
@@ -40,13 +43,13 @@ namespace Implementation.Builder
 		public abstract void BuildPartA();
 		public abstract void BuildPartB();
 		public abstract void BuildPartC();
-		public abstract Product GetResult();
+		public abstract BaseProduct GetResult();
 	}
 
-	class Product
+	class Product:BaseProduct
 	{
 		List<string> parts = new List<string>();
-		public void Add(string part)
+		public override void Add(string part)
 		{
 			parts.Add(part);
 		}
@@ -66,9 +69,31 @@ namespace Implementation.Builder
 
 	}
 
+
+	class TestProduct: BaseProduct
+	{
+		List<string> parts = new List<string>();
+		public override void Add(string part)
+		{
+			parts.Add(part);
+		}
+		public override string ToString()
+		{
+			string st = "";
+			foreach (var item in parts)
+			{
+				st += "+" + item;
+			}
+			return st;
+		}
+	}
+	internal abstract class BaseProduct
+	{
+		public abstract void Add(string part);
+	}
 	class ConcreteBuilder : Builder
 	{
-		Product product = new Product();
+		BaseProduct product = new TestProduct();
 		public override void BuildPartA()
 		{
 			product.Add("Part A");
@@ -81,7 +106,7 @@ namespace Implementation.Builder
 		{
 			product.Add("Part C");
 		}
-		public override Product GetResult()
+		public override BaseProduct GetResult()
 		{
 			return product;
 		}

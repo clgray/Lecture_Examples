@@ -96,9 +96,11 @@ namespace Implementation.Decorator
     {
         public static void UpgradeBike()
         {
-            var basicBike = new AluminiumBike();
-            BikeAccessories upgraded = new SportPackage(basicBike);
+            var basicBike = new CarbonBike();
+            BikeAccessories upgraded = new SecurityPackage(basicBike);
+            upgraded = new SportPackage(upgraded);
             upgraded = new SecurityPackage(upgraded);
+            upgraded = new SportPackage(upgraded);
 
             Console.WriteLine($"Bike: '{upgraded.GetDetails()}' Cost: {upgraded.GetPrice()}");
 

@@ -38,9 +38,8 @@ namespace Implementation.Singleton
 				{
 					_config[key] = "0";
 				}
+				return _config[key];
 			}
-
-			return _config[key];
 		}
 
 		public void SetValue(string key, string value)

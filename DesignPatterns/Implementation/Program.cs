@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using Implementation.Adapter;
 using Implementation.Composite;
+using Implementation.Decorator;
 using Implementation.Enumerator;
 using Implementation.Facade;
 using Implementation.FactoryMethod;
@@ -13,6 +17,7 @@ using Implementation.Proxy;
 using Implementation.ReaderWriterLock;
 using Implementation.Singleton;
 using Implementation.Strategy;
+using Implementation.TemplateMethod;
 using Implementation.Visitor;
 
 namespace Implementation
@@ -21,11 +26,7 @@ namespace Implementation
 	{
 		private static void Main(string[] args)
 		{
-
-			var ranner = new EmployeeRunner();
-			ranner.Run();
-			//var log = new LogProcessor(new SystemLogImporter());
-			//log.ProcessLogs();
+			ChainOfResponsibility.ChainOfResponsibility.Run();
 		}
 	}
 }

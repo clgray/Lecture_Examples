@@ -34,7 +34,6 @@ namespace Implementation.ReaderWriterLock
 		}
 		public void BeginWrite()
 		{
-
 			Monitor.Enter(_lockObj);
 			while (_hasWrite || _readCount != 0)
 			{

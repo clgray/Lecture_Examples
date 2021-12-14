@@ -13,8 +13,9 @@ namespace Implementation.Visitor
 	{
 		public override void Accept(ILogEntryVisitor logEntryVisitor)
 		{
-			// Ѕлагодар€ перегрузке методов выбираетс€ метод Visit(ExceptionLogEntry)
+			// Ѕлагодар€ перегрузке методов выбираетс€ метод Visit(CriticalLogEntry)
 			logEntryVisitor.Visit(this);
 		}
 	}
+
 }

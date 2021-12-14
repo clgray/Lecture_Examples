@@ -15,6 +15,7 @@ namespace Implementation.Singleton
 		{
 			_configService = configService;
 		}
+
 		public string Run()
 		{
 			var threadsCount = 10; 

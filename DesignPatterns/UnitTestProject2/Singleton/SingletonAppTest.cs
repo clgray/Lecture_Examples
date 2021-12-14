@@ -21,6 +21,13 @@ namespace UnitTestProject2
 			var result = _target.Run();
 			Assert.AreEqual("10000000", result);
 		}
-		
+
+		[TestMethod]
+		public void RunTest1()
+		{
+			var result = _target.Run();
+			Assert.AreEqual("10000000", result);
+		}
+
 	}
 }

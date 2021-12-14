@@ -1,3 +1,5 @@
+using System;
+
 namespace Implementation.Visitor
 {
 
@@ -35,28 +37,19 @@ namespace Implementation.Visitor
 
 		void ILogEntryVisitor.Visit(ExceptionLogEntry exceptionLogEntry)
 		{
-			SaveException(exceptionLogEntry);
+			Console.WriteLine($"SaveException to Database - {exceptionLogEntry.Message}");
 		}
 
 		void ILogEntryVisitor.Visit(SimpleLogEntry simpleLogEntry)
 		{
-			SaveSimpleLogEntry(simpleLogEntry);
+			Console.WriteLine($"SaveSimple to Database - {simpleLogEntry.Message}");
 		}
 
 		public void Visit(CriticalLogEntry criticalLogEntry)
 		{
-			throw new System.NotImplementedException();
+			Console.WriteLine($"SaveCritical to Database - {criticalLogEntry.Message}");
 		}
 
-		private void SaveException(ExceptionLogEntry logEntry)
-		{
-			
-		}
-
-		private void SaveSimpleLogEntry(SimpleLogEntry logEntry)
-		{
-			
-		}
 	}
 
 	public class KibanaLogSaver : ILogEntryVisitor
@@ -68,27 +61,17 @@ namespace Implementation.Visitor
 
 		void ILogEntryVisitor.Visit(ExceptionLogEntry exceptionLogEntry)
 		{
-			SaveException(exceptionLogEntry);
+			Console.WriteLine($"SaveException to Kibana - {exceptionLogEntry.Message}");
 		}
 
 		void ILogEntryVisitor.Visit(SimpleLogEntry simpleLogEntry)
 		{
-			SaveSimpleLogEntry(simpleLogEntry);
+			Console.WriteLine($"SaveSimple to Kibana - {simpleLogEntry.Message}");
 		}
 
 		public void Visit(CriticalLogEntry criticalLogEntry)
 		{
-			throw new System.NotImplementedException();
-		}
-
-		private void SaveException(ExceptionLogEntry logEntry)
-		{
-
-		}
-
-		private void SaveSimpleLogEntry(SimpleLogEntry logEntry)
-		{
-
+			Console.WriteLine($"SaveCritical to Kibana - {criticalLogEntry.Message}");
 		}
 	}
 }

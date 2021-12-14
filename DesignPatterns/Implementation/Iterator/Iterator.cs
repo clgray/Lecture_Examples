@@ -5,8 +5,8 @@
 	/// </summary>
 	abstract class Iterator
 	{
-		public abstract object First();
-		public abstract object Next();
+		public abstract void First();
+		public abstract void Next();
 		public abstract bool IsDone();
 		public abstract object CurrentItem();
 	}

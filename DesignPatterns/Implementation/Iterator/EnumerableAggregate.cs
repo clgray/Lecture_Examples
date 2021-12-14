@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Implementation.Iterator
 {
 	/// <summary>
 	/// The 'ConcreteAggregate' class
 	/// </summary>
-	class ConcreteAggregate : Aggregate
+	class EnumerableAggregate : Aggregate, IEnumerable<object>
 	{
 		private readonly ArrayList _items = new ArrayList();
 
@@ -22,6 +23,16 @@ namespace Implementation.Iterator
 		{
 			get { return _items[index]; }
 			set { _items.Insert(index, value); }
+		}
+
+		public IEnumerator<object> GetEnumerator()
+		{
+			return new ConcreteEnumerator(this);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

@@ -5,8 +5,7 @@ namespace Implementation.Observer
 	class ConcreteObserver : IObserver
 	{
 		string name;
-
-
+		
 		string state;
 
 		string gap;
@@ -15,7 +14,7 @@ namespace Implementation.Observer
 		{
 			this.name = name;
 			this.gap = gap;
-			//observable.AddObserver(this);
+			observable.AddObserver(this);
 			observable.OnUpdate += Update;
 		}
 

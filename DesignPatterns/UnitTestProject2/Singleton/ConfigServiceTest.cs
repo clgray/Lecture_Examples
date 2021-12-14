@@ -12,13 +12,12 @@ namespace UnitTestProject2
 		[TestInitialize]
 		public void Init()
 		{
-			
+			_target = ConfigService.Instance();
 		}
 
 		[TestMethod]
 		public void TestSave()
 		{
-			_target = ConfigService.Instance();
 			var key = "key";
 			var value = "value";
 			_target.SetValue(key, value);
@@ -28,7 +27,6 @@ namespace UnitTestProject2
 		[TestMethod]
 		public void GetDefaultValue()
 		{
-			_target = ConfigService.Instance();
 			var key = "key";
 			var actualValue = _target.GetValue(key);
 			Assert.AreEqual("0", actualValue);

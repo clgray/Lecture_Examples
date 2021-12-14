@@ -8,10 +8,10 @@ namespace Implementation.Abstract_Factory
 {
 	class App
 	{
-		public static void Run()
+		public void Run()
 		{
-			Run(new ElfFactory());
-			Run(new VoinFactory());
+			Run(new StrikeHeroFactory());
+			//Run(new VoinFactory());
 
 			Console.ReadLine();
 		}
@@ -96,6 +96,20 @@ namespace Implementation.Abstract_Factory
 		public override Weapon CreateWeapon()
 		{
 			return new Sword();
+		}
+	}
+
+	// Фабрика создания бегущего героя с арбалетом
+	class StrikeHeroFactory : HeroFactory
+	{
+		public override Movement CreateMovement()
+		{
+			return new RunMovement();
+		}
+
+		public override Weapon CreateWeapon()
+		{
+			return new Arbalet();
 		}
 	}
 	// клиент - сам супергерой
