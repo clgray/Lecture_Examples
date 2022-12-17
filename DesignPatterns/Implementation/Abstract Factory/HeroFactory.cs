@@ -11,12 +11,10 @@ namespace Implementation.Abstract_Factory
 		public void Run()
 		{
 			Run(new StrikeHeroFactory());
-			//Run(new VoinFactory());
-
 			Console.ReadLine();
 		}
 
-		static void Run(HeroFactory heroFactory)
+		void Run(HeroFactory heroFactory)
 		{
 			var hero = new Hero(heroFactory);
 			hero.Run();

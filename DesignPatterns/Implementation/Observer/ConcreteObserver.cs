@@ -14,8 +14,10 @@ namespace Implementation.Observer
 		{
 			this.name = name;
 			this.gap = gap;
-			observable.AddObserver(this);
+			//observable.AddObserver(this);
 			observable.OnUpdate += Update;
+			//observable.OnUpdate += Update;
+			observable.OnUpdate -= Update;
 		}
 
 		public void Update(string subjectState)

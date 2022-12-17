@@ -12,7 +12,7 @@ namespace UnitTestProject2
 		[TestInitialize]
 		public void Init()
 		{
-			_target = new SingletonApp(new ConfigServiceStub());
+			_target = new SingletonApp(new NotSingletonConfigService());
 		}
 
 		[TestMethod]

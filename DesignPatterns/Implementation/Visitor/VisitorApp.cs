@@ -12,8 +12,8 @@ namespace Implementation.Visitor
 		{
 			//Point p2D = new Point2D(1, 2);
 			//Point p3D = new Point3D(1, 2, 3);
-			//IVisitor v = new Euclid();
-			////IVisitor v = new Lobachevsky();
+			////IVisitor v = new Euclid();
+			//IVisitor v = new Chebyshev();
 			//p2D.Accept(v);
 			//Console.WriteLine(p2D.Metric);
 			//p3D.Accept(v);
@@ -32,7 +32,7 @@ namespace Implementation.Visitor
 				entry.Accept(logSaver);
 				//logSaver.SaveLogEntry(entry);
 			}
-			
+
 		}
 	}
 }

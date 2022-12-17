@@ -25,11 +25,13 @@ namespace UnitTestProject2
 			Assert.AreEqual(value, actualValue);
 		}
 		[TestMethod]
-		public void GetDefaultValue()
+		public void GetValueTest()
 		{
 			var key = "key";
+			var value = "value";
 			var actualValue = _target.GetValue(key);
-			Assert.AreEqual("0", actualValue);
+			Assert.AreEqual(value, actualValue);
 		}
+
 	}
 }

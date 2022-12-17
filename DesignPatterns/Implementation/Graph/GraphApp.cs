@@ -10,7 +10,7 @@ namespace Implementation.Graph
 			var graf = new List<Node>();
 			for (int i = 0; i < 12; i++)
 			{
-				graf.Add(new Node { Id = i });
+				graf.Add(new Node { Id = i, ChildNodes = new Node[0]});
 			}
 			graf[0].ChildNodes = new[] { graf[2], graf[3] };
 			graf[2].ChildNodes = new[] { graf[10] };
@@ -22,11 +22,14 @@ namespace Implementation.Graph
 			graf[8].ChildNodes = new[] { graf[0] };
 			graf[6].ChildNodes = new[] { graf[4] };
 
-			var g = new Graph(graf.ToArray(), graf[0]);
-			foreach (Node item in g)
-			{
-				Console.WriteLine(item.Id);
-			}
+			//var g = new Graph(graf.ToArray(), graf[0]);
+
+			var g = new NewGraph();
+			g.Bfs(graf[0]);
+			//foreach (Node item in g)
+			//{
+			//	Console.WriteLine(item.Id);
+			//}
 
 		}
 	}

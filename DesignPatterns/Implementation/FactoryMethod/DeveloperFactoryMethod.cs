@@ -14,7 +14,8 @@ namespace Implementation.FactoryMethod
 
 		static void Run(Developer developer)
 		{
-			developer.Create();
+			var house = developer.Create();
+			Console.WriteLine(house.Get());
 		}
 	}
 	// абстрактный класс строительной компании
@@ -39,6 +40,7 @@ namespace Implementation.FactoryMethod
 		{
 			return new PanelHouse();
 		}
+
 	}
 	// строит деревянные дома
 	class WoodDeveloper : Developer
@@ -62,8 +64,14 @@ namespace Implementation.FactoryMethod
 			return new BlockHouse();
 		}
 	}
+
 	abstract class House
-	{ }
+	{
+		public string Get()
+		{
+			return "House";
+		}
+	}
 
 	class PanelHouse : House
 	{

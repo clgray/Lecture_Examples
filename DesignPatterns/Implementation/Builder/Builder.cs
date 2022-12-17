@@ -25,14 +25,11 @@ namespace Implementation.Builder
 		}
 		public void Construct()
 		{
-			builder.BuildPartC();
+			
 			builder.BuildPartA();
 			builder.BuildPartB();
 			builder.BuildPartC();
-			builder.BuildPartC();
-			builder.BuildPartB();
-			builder.BuildPartB();
-			builder.BuildPartB();
+			
 
 		}
 		public BaseProduct Result => builder.GetResult();

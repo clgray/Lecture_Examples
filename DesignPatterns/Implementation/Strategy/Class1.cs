@@ -10,7 +10,13 @@ namespace Implementation.Strategy
 	{
 		public List<LogEntry> GetLogs()
 		{
-			return new List<LogEntry>();
+			return new List<LogEntry>()
+			{
+				new LogEntry
+				{
+					Severity = LogSeverity.Debug, Date = DateTime.Now, Message = "Вызвали метод. Всё хорошо",
+				}
+			};
 		}
 	}
 

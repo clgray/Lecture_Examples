@@ -14,6 +14,7 @@ namespace Implementation.Singleton
 		public SingletonApp(IConfigService configService)
 		{
 			_configService = configService;
+			_configService.SetValue("count", "0");
 		}
 
 		public string Run()

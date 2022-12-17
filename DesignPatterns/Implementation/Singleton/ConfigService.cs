@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Implementation.Singleton
@@ -36,7 +37,7 @@ namespace Implementation.Singleton
 			{
 				if (!_config.ContainsKey(key))
 				{
-					_config[key] = "0";
+					throw new Exception("Key not found");
 				}
 				return _config[key];
 			}

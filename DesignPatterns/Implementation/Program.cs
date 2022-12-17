@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using Implementation.Abstract_Factory;
 using Implementation.Adapter;
 using Implementation.Composite;
 using Implementation.Decorator;
@@ -19,6 +20,7 @@ using Implementation.Singleton;
 using Implementation.Strategy;
 using Implementation.TemplateMethod;
 using Implementation.Visitor;
+using Implementation.ChainOfResponsibility;
 
 namespace Implementation
 {
@@ -26,7 +28,7 @@ namespace Implementation
 	{
 		private static void Main(string[] args)
 		{
-			ChainOfResponsibility.ChainOfResponsibility.Run();
+			BikeShop.UpgradeBike();
 		}
 	}
 }
