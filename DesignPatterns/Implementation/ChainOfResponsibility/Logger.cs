@@ -35,7 +35,7 @@
 		{
 			if ((severity & logMask) != 0) //True only if any of the logMask bits are set in severity
 			{
-				WriteMessage(msg);
+				WriteMessage(msg, severity);
 			}
 			if (next != null)
 			{
@@ -43,6 +43,6 @@
 			}
 		}
 
-		abstract protected void WriteMessage(string msg);
+		abstract protected void WriteMessage(string msg, LogLevel severity);
 	}
 }

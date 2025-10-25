@@ -8,9 +8,9 @@ namespace Implementation.ChainOfResponsibility
 			: base(mask)
 		{ }
 
-		protected override void WriteMessage(string msg)
+		protected override void WriteMessage(string msg, LogLevel severity)
 		{
-			Console.WriteLine("Writing to console: " + msg);
+			Console.WriteLine($"Writing to console: {severity} - {msg}");
 		}
 	}
 }

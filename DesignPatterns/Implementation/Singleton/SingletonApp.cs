@@ -19,7 +19,7 @@ namespace Implementation.Singleton
 
 		public string Run()
 		{
-			var threadsCount = 10; 
+			var threadsCount = 100; 
 			var threads = new Thread[threadsCount];
 			for (int i = 0; i < threadsCount; i++)
 			{
@@ -38,9 +38,9 @@ namespace Implementation.Singleton
 
 		private void Start()
 		{
-			for (int j = 0; j < 1000000; j++)
+			for (int j = 0; j < 100; j++)
 			{
-				lock (this)
+				lock(this)
 				{
 					var i = int.Parse(_configService.GetValue("count"));
 					i++;

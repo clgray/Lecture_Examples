@@ -10,6 +10,8 @@ namespace Implementation.Abstract_Factory
 	{
 		public void Run()
 		{
+			Run(new VoinFactory());
+			Run(new ElfFactory());
 			Run(new StrikeHeroFactory());
 			Console.ReadLine();
 		}

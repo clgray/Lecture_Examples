@@ -26,11 +26,11 @@ namespace Implementation.Visitor
 				new SimpleLogEntry {Message = "Всё хорошо. работаем"}
 			};
 
-			var logSaver = new KibanaLogSaver();
+			var logSaver = new DatabaseLogSaver();
 			foreach (var entry in logEntry)
 			{
-				entry.Accept(logSaver);
-				//logSaver.SaveLogEntry(entry);
+				//entry.Accept(logSaver);
+				logSaver.SaveLogEntry(entry);
 			}
 
 		}

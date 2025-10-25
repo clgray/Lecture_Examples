@@ -9,14 +9,13 @@ namespace Implementation.heap
 	class Heap
 	{
 		List<int> A = new List<int>();
-
 		public void Add(int a)
 		{
 			A.Add(a);
 			heapify(A.Count - 1);
 		}
 
-		public int GetMax()
+		public int GetMin()
 		{
 			var max = A[0];
 			var last = A[A.Count - 1];
@@ -35,15 +34,14 @@ namespace Implementation.heap
 
 			var largest = i;
 
-			if (left < A.Count - 1 && A[left] > A[largest])
+			if (left < A.Count - 1 && A[left] < A[largest])
 			{
 				largest = left;
 			}
 
-			if (right <= A.Count - 1 && A[right] > A[largest])
+			if (right <= A.Count - 1 && A[right] < A[largest])
 			{
 				largest = right;
-
 			}
 
 			if (largest != i)
@@ -51,7 +49,6 @@ namespace Implementation.heap
 				Swap(i, largest);
 				Restore(largest);
 			}
-
 			
 		}
 
@@ -59,18 +56,16 @@ namespace Implementation.heap
 		{
 			if (index == 0) return;
 			var parentIndex = (index - 1) / 2;
-			if (A[index] > A[parentIndex])
+			if (A[index] < A[parentIndex])
 			{
 				Swap(index, parentIndex);
 				heapify(parentIndex);
 			}
 		}
 
-		private void Swap(int index1, int intex2)
+		private void Swap(int index1, int index2)
 		{
-			var tmp = A[index1];
-			A[index1] = A[intex2];
-			A[intex2] = tmp;
+			(A[index1], A[index2]) = (A[index2], A[index1]);
 		}
 
 		public override string ToString()
@@ -100,7 +95,8 @@ namespace Implementation.heap
 
 			while (heap.Count>0)
 			{
-				Console.WriteLine(heap.GetMax());
+				Console.WriteLine(heap.GetMin());
+				Console.WriteLine(heap);
 			}
 		}
 	}

@@ -26,7 +26,7 @@ namespace Implementation.Facade
             result += this._subsystem2.operation1();
             result += "Facade orders subsystems to perform the action:\n";
             result += this._subsystem1.operationN();
-            result += this._subsystem2.operationZ();
+            result += this._subsystem2.operationX();
             return result;
         }
     }
@@ -55,7 +55,7 @@ namespace Implementation.Facade
             return "Subsystem2: Get ready!\n";
         }
 
-        public string operationZ()
+        public string operationX()
         {
             return "Subsystem2: Fire!\n";
         }

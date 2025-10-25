@@ -2,19 +2,20 @@
 
 namespace Implementation.Builder
 {
-	class App
+	public class App
 	{
 		public static void Run()
 		{
 			// содаем объект пекаря
 			Baker baker = new Baker();
 			// создаем билдер для ржаного хлеба
-			BreadBuilder builder = new RyeBreadBuilder();
+			BreadBuilder builder = new WheatBreadBuilder();
 			// выпекаем
-			Bread ryeBread = baker.Bake(builder);
-			Console.WriteLine(ryeBread.ToString());
+			Bread bread = baker.Bake(builder);
+			Console.WriteLine(bread.ToString());
+		
 			// оздаем билдер для пшеничного хлеба
-			builder = new WheatBreadBuilder();
+			builder = new SweetBreadBuilder();
 			Bread wheatBread = baker.Bake(builder);
 			Console.WriteLine(wheatBread.ToString());
 
@@ -78,6 +79,25 @@ namespace Implementation.Builder
 		public override void SetAdditives()
 		{
 			this.Bread.Additives = new Additives { Name = "улучшитель хлебопекарный" };
+		}
+	}
+
+	// сладкие булочки
+	class SweetBreadBuilder : BreadBuilder
+	{
+		public override void SetFlour()
+		{
+			this.Bread.Flour = new Flour { Sort = "Пшеничная мука высший сорт" };
+		}
+
+		public override void SetSalt()
+		{
+			
+		}
+
+		public override void SetAdditives()
+		{
+			this.Bread.Additives = new Additives { Name = "Много сахара и изюм" };
 		}
 	}
 }

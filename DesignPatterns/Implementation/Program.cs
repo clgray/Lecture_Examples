@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using Implementation.Abstract_Factory;
 using Implementation.Adapter;
 using Implementation.Composite;
@@ -21,6 +22,7 @@ using Implementation.Strategy;
 using Implementation.TemplateMethod;
 using Implementation.Visitor;
 using Implementation.ChainOfResponsibility;
+using PanelDeveloper = Implementation.TemplateMethod.PanelDeveloper;
 
 namespace Implementation
 {
@@ -28,7 +30,10 @@ namespace Implementation
 	{
 		private static void Main(string[] args)
 		{
-			BikeShop.UpgradeBike();
+
+			var app = new Implementation.Abstract_Factory.App();
+			app.Run();
+
 		}
 	}
 }

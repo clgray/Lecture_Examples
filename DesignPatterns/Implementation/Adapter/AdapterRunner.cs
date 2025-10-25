@@ -7,8 +7,8 @@ namespace Implementation.Adapter
 	{
 		public static void Run()
 		{
-			var adapter = new SqlServerLogSaverAdapter();
-			var client = new LogSaverClient(adapter);
+			ILogSaver logSaver = new ElkLogSaverAdapter();
+			var client = new LogSaverClient(logSaver);
 			client.Save(new LogEntry {Date = DateTime.Now, Severity = LogSeverity.Info, Message = "AdapterRunner Run"});
 			client.Save(new LogEntry { Date = DateTime.Now, Severity = LogSeverity.Critical, Message = "AdapterRunner critical error" });
 		}

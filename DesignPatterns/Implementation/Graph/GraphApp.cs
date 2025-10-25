@@ -22,10 +22,9 @@ namespace Implementation.Graph
 			graf[8].ChildNodes = new[] { graf[0] };
 			graf[6].ChildNodes = new[] { graf[4] };
 
-			//var g = new Graph(graf.ToArray(), graf[0]);
-
-			var g = new NewGraph();
-			g.Bfs(graf[0]);
+			
+			var g = new DfsGraph(graf.ToArray());
+			g.DfsStackStart(graf[0]);
 			//foreach (Node item in g)
 			//{
 			//	Console.WriteLine(item.Id);

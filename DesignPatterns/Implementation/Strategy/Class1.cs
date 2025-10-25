@@ -35,6 +35,26 @@ namespace Implementation.Strategy
 				{
 					Severity = LogSeverity.Error, Date = DateTime.Now, Message = "Неизвестная ошибка",
 				}
+				,
+				new LogEntry
+				{
+					Severity = LogSeverity.Error, Date = DateTime.Now, Message = "Неизвестная ошибка",
+				}
+				,
+				new LogEntry
+				{
+					Severity = LogSeverity.Warning, Date = DateTime.Now, Message = "Неизвестная ошибка",
+				}
+				,
+				new LogEntry
+				{
+					Severity = LogSeverity.Error, Date = DateTime.Now, Message = "Неизвестная ошибка",
+				}
+				,
+				new LogEntry
+				{
+					Severity = LogSeverity.Info, Date = DateTime.Now, Message = "Неизвестная ошибка",
+				}
 			};
 		}
 	}
@@ -55,7 +75,9 @@ namespace Implementation.Strategy
 
 		public void ProcessLogs()
 		{
-			foreach (var logEntry in _logImporter.GetLogs())
+			var logs = _logImporter.GetLogs();
+			logs.Sort();
+			foreach (var logEntry in logs)
 			{
 				SaveLogEntry(logEntry);
 			}
@@ -87,6 +109,16 @@ namespace Implementation.Strategy
 				LogSeverity.Error, entry => { WriteConsoleLogEntry(entry, ConsoleColor.DarkMagenta); }
 
 			}
+			,
+			{
+				LogSeverity.Warning, entry => { WriteConsoleLogEntry(entry, ConsoleColor.Yellow); }
+
+			}
+			,
+			{
+				LogSeverity.Info, entry => { WriteConsoleLogEntry(entry, ConsoleColor.Blue); }
+
+			}
 
 			};
 
@@ -100,15 +132,22 @@ namespace Implementation.Strategy
 	//		throw new NotImplementedException();
 	//	}
 	//}
-	public class LogEntry
+	public class LogEntry: IComparable
 	{
 		public string Message { get; set; }
 		public DateTime Date { get; set; }
 		public LogSeverity Severity { get; set; }
 
+
 		public static LogEntry Parse(string line)
 		{
 			throw new NotImplementedException();
+		}
+
+		public int CompareTo(object obj)
+		{
+			if (obj == null || !(obj is LogEntry)) return 1;
+			return ( (int)(((LogEntry)obj).Severity)).CompareTo((int)Severity);
 		}
 	}
 

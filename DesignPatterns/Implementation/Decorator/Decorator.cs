@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.IO.Compression;
+using System.Net.Sockets;
+using System.Security.Cryptography;
 
 namespace Implementation.Decorator
 {
@@ -96,14 +100,27 @@ namespace Implementation.Decorator
     {
         public static void UpgradeBike()
         {
-            var basicBike = new CarbonBike();
-            BikeAccessories upgraded = new SecurityPackage(basicBike);
+            var basicBike = new AluminiumBike();
+            IBike upgraded = new SecurityPackage(basicBike);
+            upgraded = new SportPackage(upgraded);
+            upgraded = new SportPackage(upgraded);
+            upgraded = new SportPackage(upgraded);
+            upgraded = new SportPackage(upgraded);
             upgraded = new SportPackage(upgraded);
             upgraded = new SecurityPackage(upgraded);
-            upgraded = new SportPackage(upgraded);
+
 
             Console.WriteLine($"Bike: '{upgraded.GetDetails()}' Cost: {upgraded.GetPrice()}");
 
+        }
+        public static void StreamTest()
+        {
+	        var stream = new MemoryStream();
+	        var gzipStream = new GZipStream(stream, CompressionLevel.Fastest);
+	        var buffered = new BufferedStream(gzipStream);
+	        var cryto = new CryptoStream(buffered,
+		        new FromBase64Transform(FromBase64TransformMode.DoNotIgnoreWhiteSpaces), CryptoStreamMode.Write);
+            //var net = new NetworkStream()
         }
     }
 }

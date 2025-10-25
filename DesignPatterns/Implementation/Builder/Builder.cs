@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Implementation.Builder
 {
-	class Client
+	public class Client
 	{
 		public static void Run()
 		{
@@ -27,9 +27,10 @@ namespace Implementation.Builder
 		{
 			
 			builder.BuildPartA();
-			builder.BuildPartB();
 			builder.BuildPartC();
-			
+			builder.BuildPartB();
+			builder.BuildPartB();
+			builder.BuildPartA();
 
 		}
 		public BaseProduct Result => builder.GetResult();
@@ -53,15 +54,16 @@ namespace Implementation.Builder
 		public override string ToString()
 		{
 
-			var sb = new System.Text.StringBuilder();
-			foreach (var item in parts)
-			{
-				sb.Append("-");
-				sb.Append(item);
-			}
-			sb.Replace("-", "+");
+			//var sb = new System.Text.StringBuilder();
+			//foreach (var item in parts)
+			//{
+			//	sb.Append("+");
+			//	sb.Append(item);
+			//}
+			//sb.Replace("+", "=");
+			//return sb.ToString();
 
-			return sb.ToString();
+			return string.Join("=", parts);
 		}
 
 	}

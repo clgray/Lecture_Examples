@@ -67,7 +67,7 @@ namespace Implementation.FactoryMethod
 
 	abstract class House
 	{
-		public string Get()
+		public virtual string Get()
 		{
 			return "House";
 		}
@@ -79,12 +79,20 @@ namespace Implementation.FactoryMethod
 		{
 			Console.WriteLine("Панельный дом построен");
 		}
+		public override string Get()
+		{
+			return "Панельный дом";
+		}
 	}
 	class WoodHouse : House
 	{
 		public WoodHouse()
 		{
 			Console.WriteLine("Деревянный дом построен");
+		}
+		public override string Get()
+		{
+			return "Деревянный дом";
 		}
 	}
 

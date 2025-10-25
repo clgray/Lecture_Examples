@@ -21,7 +21,7 @@ namespace Implementation.ReaderWriterLock
 			for (int i = 0; i < 50; i++)
 			{
 				readers.Add(new Thread(() => source.Read()));
-				if (i < 10)
+				if (i % 5 == 0)
 					writers.Add(new Thread(() => source.Write()));
 			}
 
@@ -29,15 +29,15 @@ namespace Implementation.ReaderWriterLock
 
 			for (int i = 0; i < 50; i++)
 			{
-				if (i < 10)
-					writers[i].Start();
+				if (i % 5 == 0)
+					writers[i / 5].Start();
 				readers[i].Start();
 			}
 
 			for (int i = 0; i < 50; i++)
 			{
-				if (i < 10)
-					writers[i].Join();
+				if (i % 5 == 0)
+					writers[i/5].Join();
 				readers[i].Join();
 			}
 
@@ -80,6 +80,7 @@ namespace Implementation.ReaderWriterLock
 			{
 				Thread.Sleep(0);
 				rw.EnterWriteLock();
+				//lock (this)
 				{
 					var rn = new Random();
 					_list[rn.Next(_list.Count)] = rn.Next(10000);

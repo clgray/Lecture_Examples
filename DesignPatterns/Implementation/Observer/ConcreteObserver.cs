@@ -16,7 +16,7 @@ namespace Implementation.Observer
 			this.gap = gap;
 			//observable.AddObserver(this);
 			observable.OnUpdate += Update;
-			//observable.OnUpdate += Update;
+			observable.OnUpdate += Update;
 			observable.OnUpdate -= Update;
 		}
 
@@ -25,5 +25,6 @@ namespace Implementation.Observer
 			state = subjectState;
 			Console.WriteLine(gap + name + ": " + state);
 		}
+
 	}
 }

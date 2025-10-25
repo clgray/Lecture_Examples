@@ -12,7 +12,7 @@ namespace Implementation.TemplateMethod
 			Console.ReadLine();
 		}
 
-		static void Run(Developer developer)
+		public static void Run(Developer developer)
 		{
 			developer.BuildHouse();
 		}

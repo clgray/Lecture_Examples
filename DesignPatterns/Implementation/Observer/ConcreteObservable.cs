@@ -9,7 +9,7 @@ namespace Implementation.Observer
 	{
 		public event Update OnUpdate;
 		public string SubjectState { get; set; }
-		//public List<IObserver> Observers { get; private set; }
+		private List<IObserver> Observers { get; set; }
 
 		private Simulator simulator;
 
@@ -17,18 +17,18 @@ namespace Implementation.Observer
 
 		public ConcreteObservable()
 		{
-			//Observers = new List<IObserver>();
+			Observers = new List<IObserver>();
 			simulator = new Simulator();
 		}
 
 		public void AddObserver(IObserver observer)
 		{
-			//Observers.Add(observer);
+			Observers.Add(observer);
 		}
 
 		public void RemoveObserver(IObserver observer)
 		{
-			//Observers.Remove(observer);
+			Observers.Remove(observer);
 		}
 
 		public void NotifyObservers(string s)
