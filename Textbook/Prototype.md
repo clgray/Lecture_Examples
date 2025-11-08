@@ -166,19 +166,19 @@ using System.Collections.Generic;
 
 public class PrototypeRegistry
 {
-    private readonly Dictionary<string, object> _prototypes = new();
+    private readonly Dictionary<Type, object> _prototypes = new();
 
-    public void Register(string key, object prototype)
+    public void Register<T>(T prototype)
     {
-        _prototypes[key] = prototype;
+        _prototypes[typeof(T)] = prototype;
     }
 
-    public T CreateClone<T>(string key)
+    public T CreateClone<T>()
     {
-        if (_prototypes[key] is IPrototype<T> proto)
+        if (_prototypes[typeof(T)] is IPrototype<T> proto)
             return proto.Clone();
-        throw new ArgumentException("Прототип не найден или несовместим.");
-    }
+        throw new ArgumentException("Прототип не найден или несовместим");
+     }
 }
 
 public static class Program
@@ -186,16 +186,18 @@ public static class Program
     public static void Main()
     {
         var registry = new PrototypeRegistry();
-        registry.Register("circle", new Circle(10, 20, 5));
-        registry.Register("rectangle", new Rectangle(30, 40));
-
-        var circle1 = registry.CreateClone<Circle>("circle");
-        var rect1 = registry.CreateClone<Rectangle>("rectangle");
-
+        registry.Register(new Circle(10, 20, 5));
+        registry.Register(new Rectangle(30, 40));
+        
+        var circle1 = registry.CreateClone<Circle>();
+        var circle2 = registry.CreateClone<Circle>();
+        var rect1 = registry.CreateClone<Rectangle>();
+        
         // Изменяем клон
         circle1.Radius = 15;
-
+        
         Console.WriteLine(circle1);
+        Console.WriteLine(circle2);
         Console.WriteLine(rect1);
     }
 }

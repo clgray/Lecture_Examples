@@ -9,7 +9,7 @@ namespace Implementation.Builder
 			// содаем объект пекаря
 			Baker baker = new Baker();
 			// создаем билдер для ржаного хлеба
-			BreadBuilder builder = new WheatBreadBuilder();
+			BreadBuilder builder = new RyeBreadBuilder();
 			// выпекаем
 			Bread bread = baker.Bake(builder);
 			Console.WriteLine(bread.ToString());
