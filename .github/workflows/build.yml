@@ -32,3 +32,12 @@ jobs:
 
       - name: Проверка, что демо запускается
         run: dotnet run --project DesignPatterns/Implementation --configuration Release --no-build -- --list
+
+      - name: Восстановление пакетов LogHub
+        run: dotnet restore LogHub/LogHub.sln
+
+      - name: Сборка LogHub
+        run: dotnet build LogHub/LogHub.sln --no-restore --configuration Release
+
+      - name: Тесты LogHub
+        run: dotnet test LogHub/LogHub.sln --no-build --configuration Release --verbosity normal
