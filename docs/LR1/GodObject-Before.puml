@@ -1,0 +1,53 @@
+@startuml
+title Диаграмма классов ДО рефакторинга
+
+class LogProcessingModule {
+  - _configPath : string
+  - _config : Dictionary<string, string>
+  - _connection : FakeDbConnection
+  - _fileWriter : StreamWriter
+  - _written : int
+  - _skipped : int
+
+  - LoadConfig() : void
+  - OpenSinks() : void
+  - ParseLine(line : string) : LogRecord
+  - Format(record : LogRecord) : string
+  - Write(record : LogRecord) : void
+  + Run(logPath : string) : void
+  - SeverityToInt(severity : string) : int
+}
+
+interface ILogSink {
+  + Write(text : string) : void
+  + Flush() : void
+  + BeginTransaction() : void
+  + Commit() : void
+  + Rollback() : void
+  + Rotate() : void
+  + GetFileSize() : long
+  + SetConsoleColor(color : ConsoleColor) : void
+}
+
+class LogRecord {
+  + Date : DateTime
+  + Severity : string
+  + Message : string
+}
+
+class FakeDbConnection {
+  - _connectionString : string
+  - _open : bool
+  + Open() : void
+  + Execute(sql, date, severity, text) : void
+  + Close() : void
+}
+
+LogProcessingModule --> ILogSink : избыточная абстракция
+LogProcessingModule --> FakeDbConnection
+LogProcessingModule --> LogRecord
+LogProcessingModule ..> File
+LogProcessingModule ..> StreamWriter
+LogProcessingModule ..> Console
+
+@enduml
