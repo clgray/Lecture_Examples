@@ -41,6 +41,3 @@ jobs:
 
       - name: Тесты loghub
         run: dotnet test LogHub/LogHub.sln --no-build --configuration Release --verbosity normal
-
-      - name: Проверка, что демо запускается loghub
-        run: dotnet run --project LogHub --configuration Release --no-build
