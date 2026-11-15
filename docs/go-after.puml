@@ -1,0 +1,71 @@
+@startuml
+title Диаграмма классов ПОСЛЕ рефакторинга
+
+class LogRecord {
+    +IpAddress : string
+    +UserIdentifier : string
+    +UserName : string
+    +Date : DateTime
+    +Request : string
+    +StatusCode : int
+    +ResponseSize : long
+    +UserAgent : string
+}
+
+class LogFileReader {
+    +ReadLines(filePath : string) : IEnumerable<string>
+}
+
+class ApacheLogParser {
+    +Parse(line : string) : LogRecord
+}
+
+class SeverityFilter {
+    -_minimumStatusCode : int
+    +IsAllowed(record : LogRecord) : bool
+}
+
+class PlainTextFormatter {
+    +Format(record : LogRecord) : string
+}
+
+class LogProcessor {
+    -_reader : LogFileReader
+    -_parser : ApacheLogParser
+    -_filter : SeverityFilter
+    -_formatter : PlainTextFormatter
+    -_sinks : IEnumerable<ILogSink>
+    +Process(filePath : string) : (int, int)
+}
+
+interface ILogSink {
+    +Write(record : LogRecord) : void
+}
+
+class InMemoryLogSink {
+    -_records : List<LogRecord>
+    +Records : IReadOnlyList<LogRecord>
+    +Write(record : LogRecord) : void
+}
+
+class FileLogSink {
+    -_filePath : string
+    -_formatter : PlainTextFormatter
+    +Write(record : LogRecord) : void
+}
+
+LogProcessor --> LogFileReader
+LogProcessor --> ApacheLogParser
+LogProcessor --> SeverityFilter
+LogProcessor --> PlainTextFormatter
+LogProcessor --> "1..*" ILogSink
+
+InMemoryLogSink ..|> ILogSink
+FileLogSink ..|> ILogSink
+
+ApacheLogParser ..> LogRecord
+SeverityFilter ..> LogRecord
+PlainTextFormatter ..> LogRecord
+ILogSink ..> LogRecord
+
+@enduml
