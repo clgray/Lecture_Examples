@@ -1,0 +1,53 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface IObservable {
+    + AddObserver(IObserver observer): void
+    + RemoveObserver(IObserver observer): void
+    + NotifyObservers(s: string): void
+}
+
+interface IObserver {
+    + Update(s: string): void
+}
+
+' Представляем делегат как класс, так как это тип-делегат
+class "Update (Delegate)" as Update {
+    + Invoke(s: string): void
+}
+
+class ConcreteObservable {
+    - Observers: List<IObserver>
+    - simulator: Simulator
+    - speed: const int = 5000
+    + event OnUpdate: Update
+    + SubjectState: string
+    + AddObserver(IObserver observer): void
+    + RemoveObserver(IObserver observer): void
+    + NotifyObservers(s: string): void
+    + Go(): void
+    - Run(): void
+}
+
+class Simulator {
+    + GetEnumerator(): IEnumerator<string>
+}
+
+class ConcreteObserver {
+    + Update(s: string): void
+}
+
+class ConcreteObserver2 {
+    + Update(s: string): void
+}
+
+' Связи
+IObservable <|.. ConcreteObservable
+IObserver <|.. ConcreteObserver
+IObserver <|.. ConcreteObserver2
+
+ConcreteObservable o-- IObserver : "оповещает"
+ConcreteObservable *-- Simulator : "использует"
+ConcreteObservable ..> Update : "содержит событие"
+
+@enduml
