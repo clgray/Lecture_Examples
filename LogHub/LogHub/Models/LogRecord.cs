@@ -1,20 +1,18 @@
 namespace LogHub.Models;
-
 public class LogRecord
 {
-    public string IpAddress { get; set; } = string.Empty;
+    // Apache-поля (уже есть)
+    public string? IpAddress { get; init; }
+    public string? UserIdentifier { get; init; }
+    public string? UserName { get; init; }
+    public DateTime Date { get; init; }
+    public string? Request { get; init; }
+    public int StatusCode { get; init; }
+    public long ResponseSize { get; init; }
+    public string? UserAgent { get; init; }
 
-    public string UserIdentifier { get; set; } = string.Empty;
-
-    public string UserName { get; set; } = string.Empty;
-
-    public DateTime Date { get; set; }
-
-    public string Request { get; set; } = string.Empty;
-
-    public int StatusCode { get; set; }
-
-    public long ResponseSize { get; set; }
-
-    public string UserAgent { get; set; } = string.Empty;
+    // новые поля для mixed-потока
+    public string Level { get; init; } = "UNKNOWN";
+    public string Message { get; init; } = string.Empty;
+    public string SourceFormat { get; init; } = "unknown";
 }
